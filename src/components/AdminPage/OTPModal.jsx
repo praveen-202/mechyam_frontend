@@ -1,20 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const OTPModal = ({ email, tempToken, onVerified, onClose }) => {
+// const OTPModal = ({ email, tempToken, onVerified, onClose }) => {
+const OTPModal = ({ email, onVerified, onClose }) => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const inputRefs = useRef([]);
 
   useEffect(() => {
-  // ✅ prevents double alert in strict mode
-  if (inputRefs.current.alertShown) return;
-  inputRefs.current.alertShown = true;
+    // ✅ prevents double alert in strict mode
+    if (inputRefs.current.alertShown) return;
+    inputRefs.current.alertShown = true;
 
-  window.alert(`An OTP has been sent to your email: ${email}\n\nPlease enter it to continue.`);
-  inputRefs.current[0]?.focus();
-}, []);
+    window.alert(`An OTP has been sent to your email: ${email}\n\nPlease enter it to continue.`);
+    inputRefs.current[0]?.focus();
+  }, []);
 
 
   const handleChange = (value, index) => {
@@ -47,6 +48,45 @@ const OTPModal = ({ email, tempToken, onVerified, onClose }) => {
     inputRefs.current[5]?.focus();
   };
 
+  // const handleVerifyOTP = async (e) => {
+  //   e.preventDefault();
+  //   const otpCode = otp.join("");
+
+  //   if (otpCode.length !== 6) {
+  //     setError("Enter 6-digit OTP");
+  //     return;
+  //   }
+
+  //   setSubmitting(true);
+  //   try {
+  //     const response = await fetch(
+  //       `${API_BASE_URL}/api/admin/auth/verify-otp`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${tempToken}`,
+  //         },
+  //         body: JSON.stringify({ email, otp: otpCode }),
+  //       }
+  //     );
+
+  //     const data = await response.json();
+
+  //     if (response.ok && data.token) {
+  //       sessionStorage.setItem("adminToken", data.token);
+  //       onVerified(data.token);
+  //     } else {
+  //       setError(data.message || "Invalid OTP");
+  //     }
+  //   } catch {
+  //     setError("Server error");
+  //   } finally {
+  //     setSubmitting(false);
+  //   }
+  // };
+
+
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
     const otpCode = otp.join("");
@@ -57,29 +97,20 @@ const OTPModal = ({ email, tempToken, onVerified, onClose }) => {
     }
 
     setSubmitting(true);
+
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/api/admin/auth/verify-otp`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tempToken}`,
-          },
-          body: JSON.stringify({ email, otp: otpCode }),
-        }
-      );
+      // 🔥 TEMPORARY STATIC OTP CHECK (backend OTP disabled)
+      if (otpCode === "123456") {
+        const fakeToken = "FAKE_ADMIN_JWT_TOKEN"; // temporary
 
-      const data = await response.json();
-
-      if (response.ok && data.token) {
-        sessionStorage.setItem("adminToken", data.token);
-        onVerified(data.token);
+        sessionStorage.setItem("adminToken", fakeToken);
+        onVerified(fakeToken);
       } else {
-        setError(data.message || "Invalid OTP");
+        setError("Invalid OTP. Use 123456");
       }
+
     } catch {
-      setError("Server error");
+      setError("Client error");
     } finally {
       setSubmitting(false);
     }
@@ -90,7 +121,7 @@ const OTPModal = ({ email, tempToken, onVerified, onClose }) => {
       <div className="bg-white p-8 rounded-xl w-[350px] text-center">
         <h2 className="font-bold text-lg mb-1">Enter OTP</h2>
 
-        
+
 
         <form onSubmit={handleVerifyOTP}>
           <div className="flex justify-center gap-2 mb-3">
