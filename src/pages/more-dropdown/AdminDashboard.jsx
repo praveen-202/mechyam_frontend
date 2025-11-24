@@ -23,7 +23,7 @@ import {
   FileText,
 } from "lucide-react";
 
-import axios from "axios";
+// import axios from "axios";//pk24/11
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const AdminDashboard = () => {
@@ -58,26 +58,36 @@ const AdminDashboard = () => {
     setJobs([...jobs, job]);
   };
 
-  // ========== Logout ==========
-  const handleLogoutClick = async () => {
-    try {
-      setLoadingLogout(true);
-      await axios.post(
-        `${API_BASE_URL}/api/admin/auth/logout`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${sessionStorage.getItem("adminToken")}` },
-        }
-      );
-      sessionStorage.clear();
-      navigate("/admin/login");
-    } catch (err) {
-      console.error("Logout failed:", err);
-      alert("Logout failed. Please try again.");
-    } finally {
-      setLoadingLogout(false);
-    }
+  // ========== Logout ==========//pk24/11
+  // const handleLogoutClick = async () => {
+  //   try {
+  //     setLoadingLogout(true);
+  //     await axios.post(
+  //       `${API_BASE_URL}/api/admin/auth/logout`,
+  //       {},
+  //       {
+  //         headers: { Authorization: `Bearer ${sessionStorage.getItem("adminToken")}` },
+  //       }
+  //     );
+  //     sessionStorage.clear();
+  //     navigate("/admin/login");
+  //   } catch (err) {
+  //     console.error("Logout failed:", err);
+  //     alert("Logout failed. Please try again.");
+  //   } finally {
+  //     setLoadingLogout(false);
+  //   }
+  // };
+
+  const handleLogoutClick = () => {//pk24/11
+    setLoadingLogout(true);
+
+    sessionStorage.clear();
+    navigate("/admin/login", { replace: true });
+
+    setLoadingLogout(false);
   };
+
 
   // ========== Close dropdown on outside click ==========
   useEffect(() => {
@@ -147,11 +157,10 @@ const AdminDashboard = () => {
                     updateActivePage(item.key);
                     setMenuOpen(false);
                   }}
-                  className={`flex items-center gap-3 w-full px-4 py-2 text-left transition ${
-                    activePage === item.key
-                      ? "bg-blue-100 text-blue-900 font-semibold"
-                      : "hover:bg-blue-50 text-gray-700"
-                  }`}
+                  className={`flex items-center gap-3 w-full px-4 py-2 text-left transition ${activePage === item.key
+                    ? "bg-blue-100 text-blue-900 font-semibold"
+                    : "hover:bg-blue-50 text-gray-700"
+                    }`}
                 >
                   {item.icon}
                   <span>{item.label}</span>
