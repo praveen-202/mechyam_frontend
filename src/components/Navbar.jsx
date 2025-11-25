@@ -370,47 +370,55 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="md:hidden bg-white shadow-md">
-            <ul className="flex flex-col text-gray-800 font-medium px-6 py-4 space-y-3">
-              <li>
-                <Link to="/structural-steel" onClick={() => setMenuOpen(false)}>
-                  Structural Steel
-                </Link>
-              </li>
-              <li>
-                <Link to="/mechanical" onClick={() => setMenuOpen(false)}>
-                  Mechanical
-                </Link>
-              </li>
-              <li>
-                <Link to="/industries" onClick={() => setMenuOpen(false)}>
-                  Industries
-                </Link>
-              </li>
-              <li>
-                <Link to="/projects" onClick={() => setMenuOpen(false)}>
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" onClick={() => setMenuOpen(false)}>
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/admin-page" onClick={() => setMenuOpen(false)}>
-                  Admin Login
-                </Link>
-              </li>
-              <div className="flex flex-col gap-2 pt-3">
-                <ContactButton />
-                <EmailButton />
-                <CareerButton />
-              </div>
-            </ul>
-          </div>
+       {menuOpen && (
+  <div className="md:hidden w-full bg-white shadow-md">
+    <ul className="flex flex-col text-gray-800 font-medium px-6 py-4 space-y-3">
+
+      <li>
+        <Link to="/structural-steel" onClick={() => setMenuOpen(false)}>
+          Structural Steel
+        </Link>
+      </li>
+
+      <li>
+        <Link to="/mechanical" onClick={() => setMenuOpen(false)}>
+          Mechanical
+        </Link>
+      </li>
+
+      <li>
+        <Link to="/industries" onClick={() => setMenuOpen(false)}>
+          Industries
+        </Link>
+      </li>
+
+      <li>
+        <Link to="/projects" onClick={() => setMenuOpen(false)}>
+          Projects
+        </Link>
+      </li>
+
+      <li>
+        <Link to="/about" onClick={() => setMenuOpen(false)}>
+          About
+        </Link>
+      </li>
+
+      <li>
+        <Link to="/admin-page" onClick={() => setMenuOpen(false)}>
+          Admin Login
+        </Link>
+      </li>
+
+      {/* Buttons */}
+      <div className="flex flex-col gap-2 pt-3">
+        <ContactButton />
+        <EmailButton />
+        <CareerButton />
+      </div>
+    </ul>
+  </div>
+
         )}
       </nav>
 

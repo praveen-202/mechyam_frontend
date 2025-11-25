@@ -5,22 +5,30 @@ import industries01 from "../assets/Industries-Image/industries01.jpg";
 const Industries = () => (
   <>
     <section id="steel-structure" className="w-full overflow-hidden">
-      <div className="relative w-screen flex items-center justify-start -mx-4">
-        <img
-          src={industries01}
-          alt="Industries Background"
-          className="w-full"
-          style={{ height: "50vh", objectFit: "cover" }}
-        />
-        <div className="absolute left-0 top-1/3 z-10 ml-8">
-          <h1
-            className="text-6xl  lg:text-l font-extrabold text-white mb-2 px-20 w-auto h-auto bg-gray-800 rounded bg-opacity-50"
-            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
-          >
-            Industries
-          </h1>
-        </div>
-      </div>
+      <div className="relative w-full overflow-hidden">
+  {/* Image */}
+  <img
+    src={industries01}
+    alt="Steel Structure Background"
+    className="w-full h-[50vh] object-cover object-center"
+  />
+
+  {/* Text Overlay */}
+  <div className="absolute inset-0 flex items-center justify-start px-4 sm:px-10">
+    <h1
+      className="
+        text-white font-extrabold 
+         text-3xl sm:text-5xl md:text-6xl lg:text-7xl 
+        bg-black/50 px-4 py-2 rounded 
+        max-w-[90%] sm:max-w-[70%] md:max-w-[50%]
+      "
+      style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+    >
+     Industries
+    </h1>
+  </div>
+</div>
+
     </section>
 
     {/* Offerings Section */}
