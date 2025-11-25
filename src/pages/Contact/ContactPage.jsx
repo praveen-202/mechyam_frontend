@@ -148,13 +148,16 @@ const ContactPage = () => {
     <div className="min-h-screen bg-gray-100">
       {/* ✅ Banner Section (clear image, no overlay, no text) */}
       <div
-        className="relative bg-cover bg-center h-96 flex items-center justify-center"
-        style={{
-          backgroundImage: `url(${contactImg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      ></div>
+  className="
+    relative 
+    bg-cover bg-center 
+    h-48 sm:h-64 md:h-80 lg:h-96 
+    flex items-center justify-center
+  "
+  style={{
+    backgroundImage: `url(${contactImg})`,
+  }}
+></div>
 
       {/* ✅ Contact Details + Form Section */}
       <div className="container mx-auto px-4 py-8 flex flex-wrap">
