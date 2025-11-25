@@ -8,30 +8,30 @@ const StructuralSteel = () => (
   <>
     {/* Hero Section */}
     <section id="steel-structure" className="w-full overflow-hidden">
-      <div className="relative w-screen flex items-center justify-start -mx-4">
-        <img
-          src={structuralsteel}
-          alt="Steel Structure Background"
-          className="w-full"
-          style={{
-            height: "50vh",
-            width: "100vw",
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
-        />
-        <div
-          className="absolute left-0 top-1/3 z-10 ml-8"
-          style={{ maxWidth: "50vw" }}
-        >
-          <h1
-            className="text-5xl md:text-6xl font-extrabold text-white mb-2 text-left px-20 w-auto h-auto bg-gray-800 bg-opacity-50 rounded"
-            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
-          >
-            Structural Steel
-          </h1>
-        </div>
-      </div>
+      <div className="relative w-full overflow-hidden">
+  {/* Image */}
+  <img
+    src={structuralsteel}
+    alt="Steel Structure Background"
+    className="w-full h-[50vh] object-cover object-center"
+  />
+
+  {/* Text Overlay */}
+  <div className="absolute inset-0 flex items-center justify-start px-4 sm:px-10">
+    <h1
+      className="
+        text-white font-extrabold 
+        text-3xl sm:text-5xl md:text-6xl lg:text-7xl 
+        bg-black/50 px-4 py-2 rounded 
+        max-w-[90%] sm:max-w-[70%] md:max-w-[50%]
+      "
+      style={{ textShadow: "0 2px 10px rgba(0,0,0,0.6)" }}
+    >
+      Structural Steel
+    </h1>
+  </div>
+</div>
+
     </section>
 
     {/* Two-column section: text (left) and image (right) */}
